@@ -25,7 +25,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout Code
         uses: actions/checkout@v4
+       
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 18
 
+      - name: Install dependencies
+        run: npm install
+
+        
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
